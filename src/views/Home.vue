@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <mdb-container>
+      <sidebar />
       <mdb-row>
         <mdb-col>
           <h1>
@@ -8,7 +9,7 @@
             <mdb-btn @click="addUser">123</mdb-btn>
           </h1>
         </mdb-col>
-         <mdb-col offset="4"><sidebar /></mdb-col>
+         <mdb-col offset="4"></mdb-col>
       </mdb-row>
     </mdb-container>
   </div>
