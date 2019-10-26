@@ -1,17 +1,14 @@
 <template>
   <div class="sidebar">
-    <mdb-row>
-      <mdb-col>
-        <ul>
-          <li>1</li>
-        </ul>
+    <mdb-row class="active-bonuses">
+      <mdb-col><h3>Активные бонусы</h3>
       </mdb-col>
     </mdb-row>
-    <mdb-row>
+    <mdb-row class="history">
       <mdb-col>
-        <h2>История</h2>
+        <h3>История бонусов</h3>
       </mdb-col>
-      <mdb-col>
+      <mdb-col class="m-2">
         <historyCard />
       </mdb-col>
     </mdb-row>
@@ -21,18 +18,23 @@
 <script>
 import { mdbRow, mdbCol } from "mdbvue";
 import historyCard from "@/components/UI/HistoryCard.vue";
-export default { components: mdbRow, mdbCol, historyCard };
+export default { components: { mdbRow, mdbCol, historyCard } };
 </script>
 
 <style scoped lang="less">
 .sidebar {
-  background-color: #0e3263;
-  color: white;
+  background-color: white;
   height: 100vh;
   position: absolute;
   width: 100%;
   right: 0;
-  display: flex;
-  flex-direction: column;
+.active-bonuses{
+  margin: 0;
+}
+  .history {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
 }
 </style>
