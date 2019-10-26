@@ -15,9 +15,6 @@
         </mdb-col>
       </mdb-row>
       <mdb-row class="history">
-        <mdb-col>
-          <h3>Бонусы</h3>
-        </mdb-col>
         <mdb-col class="m-2">
           <historyCard />
         </mdb-col>

@@ -1,40 +1,67 @@
 <template>
-  <div class="history-card">
-    {{this.user.history[0].bonus}}
+  <div class="history-card mt-3">
+    <div class="row mb-4">
+      <div class="col">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="bonus-title">
+            <h3>Бонусы</h3>
+            <p class="m-0">Обновлено вчера</p>
+          </div>
+          <div class="balance pr-2">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="9" cy="9" r="9" fill="#FFCC6A" />
+              <circle cx="9" cy="9" r="7" fill="#FFE073" />
+              <path
+                d="M9 4L10.1226 7.45492H13.7553L10.8164 9.59017L11.9389 13.0451L9 10.9098L6.06107 13.0451L7.18364 9.59017L4.24472 7.45492H7.87743L9 4Z"
+                fill="#50B447"
+              />
+            </svg>
+            {{this.user.sibCoins}} SibCoins
+            <div class="market-button cursor-pointer">Потратить на привелегии</div>
+          </div>
+        </div>
+      </div>
+    </div>
     <mdb-card>
       <mdb-card-body>
         <mdb-card-text>
           <mdb-row>
-            <mdb-col class="history-card-li">История начисления бонусов</mdb-col>
-            <mdb-col class="balance">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="9" cy="9" r="9" fill="#FFCC6A" />
-                <circle cx="9" cy="9" r="7" fill="#FFE073" />
-                <path
-                  d="M9 4L10.1226 7.45492H13.7553L10.8164 9.59017L11.9389 13.0451L9 10.9098L6.06107 13.0451L7.18364 9.59017L4.24472 7.45492H7.87743L9 4Z"
-                  fill="#50B447"
-                />
-              </svg>
-              {{this.user.sibCoins}} SibCoins
-              <div class="market-button">Потратить на привелегии</div>
-            </mdb-col>
+            <mdb-col class="mb-3">История начисления бонусов</mdb-col>
           </mdb-row>
           <mdb-row
             class="d-flex history-card-li"
             v-for="(bonus, index) in user.history"
             :key="index"
           >
-            <mdb-col
-              class="d-flex"
-              lg="8"
-            >+ {{bonus.bonus}} SibCoin В компании теперь {{showDescription(bonus.bonus)}} сотрудников</mdb-col>
-            <mdb-col class="date" lg="4">27.10.19</mdb-col>
+            <mdb-col class="d-flex flex-column" lg="12">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span>+{{bonus.bonus}} SibCoin {{` `}}</span>
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle cx="9" cy="9" r="9" fill="#FFCC6A" />
+                    <circle cx="9" cy="9" r="7" fill="#FFE073" />
+                    <path
+                      d="M9 4L10.1226 7.45492H13.7553L10.8164 9.59017L11.9389 13.0451L9 10.9098L6.06107 13.0451L7.18364 9.59017L4.24472 7.45492H7.87743L9 4Z"
+                      fill="#50B447"
+                    />
+                  </svg>
+                </div>
+                <div>27.10.19</div>
+              </div>
+              <div>В компании теперь {{showDescription(bonus.bonus)}} сотрудников</div>
+            </mdb-col>
 
             <mdb-col></mdb-col>
           </mdb-row>
@@ -103,14 +130,34 @@ h4 {
     font-size: 13px;
   }
 }
+.bonus-title {
+  p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 13px;
+    /* identical to box height */
+
+    letter-spacing: 0.01em;
+
+    color: #6a707e;
+  }
+}
 .history-card-li {
-  border-bottom: 1px;
-  border-block-end-style: solid;
+  border-bottom: 1px #ebeff2 solid;
+  padding: 0.35rem 0;
+  span {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 19px;
+    /* identical to box height */
+    letter-spacing: 0.01em;
+    color: #2ed47a;
+  }
 }
 .balance {
   text-align: end;
-  border-bottom: 1px;
-  border-block-end-style: solid;
+  border-bottom: 1px #ebeff2 solid;
 }
 .achievement-img {
   border-radius: 50%;
@@ -122,8 +169,10 @@ h4 {
   color: #4c5862;
 }
 .market-button {
-  text-align: left;
-  margin: 1rem;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+  margin-top: 0.55rem;
   padding: 5px;
   font-size: 11px;
   line-height: 1;

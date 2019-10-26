@@ -12,7 +12,9 @@ export default new Vuex.Store({
     state: {
         user: {
             login: "",
-            pass: ""
+            pass: "",
+            achivments: [],
+            history: []
         },
         targets: {},
         uid: ""
@@ -22,7 +24,10 @@ export default new Vuex.Store({
             state.user = payload
         },
         logout(state) {
-            state.user = {}
+            state.user = {
+                achivments: [],
+                history: []
+            }
         },
         setTargets(state, payload) {
             state.targets = payload
@@ -49,17 +54,18 @@ export default new Vuex.Store({
                 .ref('clients/')
                 .once('value', snapshot => {
                     let data = snapshot.val();
-                    if (!data[store.state.uid].achivments) {
-                        data[store.state.uid].achiments = [{
+                    if (!data[store.state.uid].achivments)
+                        data[store.state.uid].achivments = [{
                             type: "zp",
-                            activated: false
+                            activated: false,
+                            wasBonused: value
                         }]
-                    } else {
-                        data[store.state.uid].achiments.push({
+                    else
+                        data[store.state.uid].achivments.push({
                             type: "zp",
-                            activated: false
+                            activated: false,
+                            wasBonused: value
                         })
-                    }
 
                     if (!data[store.state.uid].history) {
                         data[store.state.uid].history = [{
