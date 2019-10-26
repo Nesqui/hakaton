@@ -1,21 +1,22 @@
 <template>
   <div class="home">
-    <div class="container">
-      <div class="row">
-        <div class="col">
+    <mdb-container>
+      <mdb-row>
+        <mdb-col>
           <h1>
             123
             <mdb-btn @click="addUser">123</mdb-btn>
           </h1>
-        </div>
-      </div>
-    </div>
+        </mdb-col>
+         <mdb-col offset="4"><sidebar /></mdb-col>
+      </mdb-row>
+    </mdb-container>
   </div>
 </template>
 
 <script>
-import { mdbBtn } from "mdbvue";
-
+import { mdbBtn, mdbContainer, mdbRow, mdbCol } from "mdbvue";
+import sidebar from "@/components/UI/SideBar.vue";
 export default {
   name: "home",
   methods: {
@@ -23,6 +24,6 @@ export default {
       this.$store.dispatch(`addUser`);
     }
   },
-  components: { mdbBtn }
-}
+  components: { mdbBtn, sidebar, mdbContainer, mdbRow, mdbCol }
+};
 </script>
