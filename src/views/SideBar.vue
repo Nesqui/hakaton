@@ -7,7 +7,7 @@
         @click="currentObjective = ``"
       >Назад</a>
       <mdb-row class="active-bonuses">
-        <mdb-col v-if="false">
+        <mdb-col v-if="!currentObjective">
           <h3>Активные бонусы</h3>
         </mdb-col>
         <mdb-col v-if="currentObjective===`zpInfo`">
@@ -22,10 +22,9 @@
           <historyCard />
         </mdb-col>
       </mdb-row>
+      
     </div>
-    <div class="d-flex justify-content-center full-w-btn">
-      <a @click="logout">Выйти</a>
-    </div>
+    <a class="text-center full-w-btn" @click="logout">Выйти</a>
   </div>
 </template>
 
@@ -38,7 +37,7 @@ export default {
   name: `sidebar`,
   data() {
     return {
-      currentObjective: {}
+      currentObjective: null
     };
   },
   components: { mdbRow, mdbCol, historyCard, organizationCard },
@@ -59,7 +58,7 @@ export default {
 <style scoped lang="less">
 .sidebar {
   background-color: white;
-  height: 100vh;
+  height: 92vh;
   .active-bonuses {
     margin: 0;
   }
@@ -67,13 +66,10 @@ export default {
     display: flex;
     flex-direction: column;
     margin: 0;
-    width: 25vw;
+    width: 100%;
     right: 0;
   }
   .full-w-btn {
-    width: 100%;
-    display: block;
-    justify-content: center;
     background-color: rgba(204, 204, 204, 0.349);
     padding: 0.45rem 0;
     cursor: pointer;

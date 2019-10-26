@@ -7,7 +7,7 @@
           <strong>Зарплатный проект</strong>
           <img
             @click="openZpInfo"
-            src="../assets/enterprise.svg"
+            src="../assets/team.svg"
             alt
             class="img-fluid objective-img my-2"
           />
@@ -19,7 +19,7 @@
               color="blue"
             ></mdb-progress>
 
-            <img src="../assets/plus.svg" alt class="img-fluid" />
+            <img @click="addStaff" src="../assets/plus.svg" alt class="img-fluid" />
           </div>
           <p>{{user.employees_amount}}/{{currentZpTarget}}</p>
         </mdb-col>
@@ -44,7 +44,7 @@
 
 <script>
 // mdbBtn,
-import {bus} from "../bus";
+import { bus } from "../bus";
 import { mdbRow, mdbCol, mdbProgress } from "mdbvue";
 export default {
   name: "home",
@@ -54,6 +54,19 @@ export default {
     },
     openZpInfo() {
       bus.$emit(`openZpInfo`, `zpInfo`);
+    },
+    addStaff() {
+      this.$store.dispatch(`addStaff`).then(() => {
+        this.$store.dispatch(`getUsers`).then(() => {
+          for (let i = 0; i < this.targets[`zp`].length; i++) {
+            const element = this.targets[`zp`][i];
+            if (+element.max === +this.user[`employees_amount`]) {
+              this.$store.dispatch(`addZpHistory`, element.bonus);
+              break;
+            }
+          }
+        });
+      });
     }
   },
   computed: {
@@ -86,20 +99,21 @@ export default {
 
 <style lang="less" scoped>
 .grid-map {
-  height: 94vh;
-  width: 100%;
+  height: 92vh;
+  width: 75vw;
   background: url(../assets/map.svg) no-repeat 0 0;
   background-size: cover;
   zoom: 0;
   .row {
     height: 33.333%;
+    margin: 0;
+    padding: 0;
   }
   .col {
     height: 100%;
     width: 33%;
     padding: 0 !important;
     margin: 0 !important;
-    outline: 1px dashed grey;
     p {
       color: black;
       font-weight: 500;
