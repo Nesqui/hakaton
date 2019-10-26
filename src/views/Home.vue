@@ -5,7 +5,7 @@
         <div class="col">
           <h1>
             123
-            <mdb-btn>123</mdb-btn>
+            <mdb-btn @click="addUser">123</mdb-btn>
           </h1>
         </div>
       </div>
