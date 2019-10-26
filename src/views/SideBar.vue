@@ -1,51 +1,51 @@
 <template>
   <div class="sidebar d-flex justify-content-between flex-column">
     <div>
-    <mdb-row class="active-bonuses">
-      <mdb-col>
-        <h3>Активные бонусы</h3>
-      </mdb-col>
-    </mdb-row>
-    <mdb-row class="history">
-      <mdb-col>
-        <h3>История бонусов</h3>
-      </mdb-col>
-      <mdb-col class="m-2">
-        <historyCard />
-      </mdb-col>
-    </mdb-row>
+      <mdb-row class="active-bonuses">
+        <mdb-col v-if="false">
+          <h3>Активные бонусы</h3>
+        </mdb-col>
+        <mdb-col v-if="currentObjective===`zpInfo`"><organizationCard></organizationCard></mdb-col>
+      </mdb-row>
+      <mdb-row class="history">
+        <mdb-col>
+          <h3>История бонусов</h3>
+        </mdb-col>
+        <mdb-col class="m-2">
+          <historyCard />
+        </mdb-col>
+      </mdb-row>
     </div>
     <div class="d-flex justify-content-center logout-btn">
-      <a @click="logout">
-       Выйти
-      </a>
+      <a @click="logout">Выйти</a>
     </div>
   </div>
 </template>
 
 <script>
-import {bus} from "../bus"
+import { bus } from "../bus";
 import { mdbRow, mdbCol } from "mdbvue";
+import organizationCard from "../components/products/Organization"
 import historyCard from "@/components/UI/HistoryCard.vue";
 export default {
   name: `sidebar`,
   data() {
     return {
-      
-    }
+      currentObjective: {}
+    };
   },
-  components: { mdbRow, mdbCol, historyCard },
+  components: { mdbRow, mdbCol, historyCard,organizationCard },
   methods: {
     logout() {
       this.$store.dispatch(`logout`);
     },
-    showZpInfo() {
-
-    }
+    showZpInfo() {}
   },
   beforeMount() {
-    bus.$on(`openZpInfo`, this.showZpInfo)
-  },
+    bus.$on(`openZpInfo`, payload => {
+      this.currentObjective = payload;
+    });
+  }
 };
 </script>
 
@@ -62,15 +62,14 @@ export default {
     margin: 0;
     width: 25vw;
     right: 0;
-  
   }
-    .logout-btn {
-      width: 100%;
-      display: block;
-      justify-content: center;
-      background-color: rgba(204, 204, 204, 0.349);
-      padding: 0.75rem 0;
-      cursor: pointer;
-    }
+  .logout-btn {
+    width: 100%;
+    display: block;
+    justify-content: center;
+    background-color: rgba(204, 204, 204, 0.349);
+    padding: 0.75rem 0;
+    cursor: pointer;
+  }
 }
 </style>
