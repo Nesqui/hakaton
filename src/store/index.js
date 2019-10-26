@@ -14,6 +14,9 @@ export default new Vuex.Store({
     mutations: {
         setUser(state, payload) {
             state.user = payload
+        },
+        logout(state) {
+            state.user = {}
         }
     },
     actions: {
@@ -34,15 +37,28 @@ export default new Vuex.Store({
                 .ref('clients/')
                 .once('value', snapshot => {
                     let data = snapshot.val();
-                    console.log(`fields`, fields);
-
+                    let founded = false;
                     for (let element in data) {
                         console.log(`vot`, data[element]);
                         if (data[element].login === fields.login && data[element].password === fields.password) {
                             commit('setUser', data[element]);
-                        } else console.log(element);
+                            founded = true;
+                            Vue.toasted.show('Добро пожаловать', {
+                                /* some option */
+                            });
+                            break;
+                        }
                     }
+                    if (!founded) Vue.toasted.show('Логин или пароль неверный', {
+                        /* some option */
+                    });
+
                 });
+        },
+        logout({
+            commit
+        }) {
+            commit(`logout`)
         }
     },
     getters: {

@@ -1,11 +1,15 @@
 <template>
   <div id="app">
     <div v-if="isAuth">
-      <div id="nav">
-        <router-link to="/">Home</router-link>|
-        <router-link to="/about">About</router-link>
+      <div class="row">
+        <div class="col-md-9 p-0 m-0">
+          <topMenu></topMenu>
+          <router-view />
+        </div>
+        <div class="col-md-3 p-0 m-0">
+          <sidebar></sidebar>
+        </div>
       </div>
-      <router-view />
     </div>
     <loginPage v-else></loginPage>
   </div>
@@ -13,12 +17,20 @@
 
 <script>
 import loginPage from "./views/Login";
+import topMenu from "./views/TopMenu";
+import sidebar from "@/views/SideBar.vue";
+
 export default {
   components: {
-    loginPage
+    loginPage,
+    topMenu,
+    sidebar
   },
+
   computed: {
-    isAuth() {return this.$store.getters.isAuth}
+    isAuth() {
+      return this.$store.getters.isAuth;
+    }
   }
 };
 </script>

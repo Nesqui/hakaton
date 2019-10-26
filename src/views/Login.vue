@@ -2,14 +2,14 @@
   <div>
     <div class="container">
       <div class="login-wrapper row">
-        <div class="col">
+        <div class="col" v-on:keyup.enter="auth">
           <mdb-row>
             <mdb-col>
               <mdb-input label="Логин" v-model="fields.login" required />
             </mdb-col>
           </mdb-row>
           <mdb-row>
-            <mdb-col>
+            <mdb-col  >
               <mdb-input type="email" label="Ваш пароль" v-model="fields.password" required />
             </mdb-col>
           </mdb-row>
