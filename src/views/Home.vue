@@ -4,16 +4,24 @@
       <sidebar />
       <mdb-row>
         <mdb-col class="d-flex justify-content-center align-items-center flex-column">
-          <strong>{{user.org_name}}</strong>
-          <img src="../assets/enterprise.svg" alt class="img-fluid objective-img my-2" />
+          <strong>Зарплатный проект</strong>
+          <img
+            @click="openZpInfo"
+            src="../assets/enterprise.svg"
+            alt
+            class="img-fluid objective-img my-2"
+          />
           <div class="progress-wrapper">
-            <mdb-progress :height="20" :max="currentZpTarget" :value="user.employees_amount" color="blue"></mdb-progress>
+            <mdb-progress
+              :height="20"
+              :max="currentZpTarget"
+              :value="user.employees_amount"
+              color="blue"
+            ></mdb-progress>
 
             <img src="../assets/plus.svg" alt class="img-fluid" />
           </div>
-          <p>
-            {{user.employees_amount}}/{{currentZpTarget}}
-          </p>
+          <p>{{user.employees_amount}}/{{currentZpTarget}}</p>
         </mdb-col>
         <mdb-col></mdb-col>
         <mdb-col></mdb-col>
@@ -36,12 +44,16 @@
 
 <script>
 // mdbBtn,
+import {bus} from "../bus";
 import { mdbRow, mdbCol, mdbProgress } from "mdbvue";
 export default {
   name: "home",
   methods: {
     addUser() {
       this.$store.dispatch(`addUser`);
+    },
+    openZpInfo() {
+      bus.$emit(`openZpInfo`);
     }
   },
   computed: {

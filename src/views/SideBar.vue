@@ -10,13 +10,25 @@
 </template>
 
 <script>
+import {bus} from "../bus"
 export default {
   name: `sidebar`,
+  data() {
+    return {
+      
+    }
+  },
   methods: {
     logout() {
       this.$store.dispatch(`logout`);
+    },
+    showZpInfo() {
+
     }
-  }
+  },
+  beforeMount() {
+    bus.$on(`openZpInfo`, this.showZpInfo)
+  },
 };
 </script>
 
