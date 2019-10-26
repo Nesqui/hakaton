@@ -66,15 +66,11 @@
                   <div>
                     <span class="grey">{{user.employees_amount}}</span> Количество сотрудников
                   </div>
-<<<<<<< HEAD
                   <mdb-btn
                     @click.native="addStaff"
                     class="green-btn cursor-pointer"
                     :disabled="disabledButton"
                   >Добавить</mdb-btn>
-=======
-                  <mdb-btn @click.native="addStaff" class="green-btn cursor-pointer">Добавить</mdb-btn>
->>>>>>> ce754fe05c1118a0aaaabe1ddfae482d4d1f1128
                 </div>
               </mdb-card-body>
             </mdb-card>

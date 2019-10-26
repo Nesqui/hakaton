@@ -1,7 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <div class="history-card">
-=======
   <div class="history-card mt-3">
     <div class="row mb-4">
       <div class="col">
@@ -31,7 +28,6 @@
         </div>
       </div>
     </div>
->>>>>>> ce754fe05c1118a0aaaabe1ddfae482d4d1f1128
     <mdb-card>
       <mdb-card-body>
         <mdb-card-text>
