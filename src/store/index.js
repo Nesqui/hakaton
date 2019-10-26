@@ -5,7 +5,12 @@ import firebase from 'firebase';
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    state: {},
+    state: {
+        user: {
+            login: "",
+            pass: ""
+        },
+    },
     mutations: {},
     actions: {
         addUser() {
@@ -37,6 +42,9 @@ export default new Vuex.Store({
                     commit('setUsersByAgent', tableData);
                 });
         }
+    },
+    getters: {
+        isAuth(state) { return state.user.login ? true : false }
     },
     modules: {}
 })
