@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div v-if="isAuth">
-      <div class="row">
+      <div class="row m-0">
         <div class="col-md-9 p-0 m-0">
           <topMenu></topMenu>
           <router-view />
@@ -18,7 +18,7 @@
 <script>
 import loginPage from "./views/Login";
 import topMenu from "./views/TopMenu";
-import sidebar from "@/views/SideBar.vue";
+import sidebar from "./views/SideBar.vue";
 
 export default {
   components: {
@@ -26,7 +26,14 @@ export default {
     topMenu,
     sidebar
   },
-
+  beforeMount() {
+    this.getTargets();
+  },
+  methods: {
+    getTargets() {
+      this.$store.dispatch(`getTargets`);
+    }
+  },
   computed: {
     isAuth() {
       return this.$store.getters.isAuth;

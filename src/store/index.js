@@ -10,6 +10,7 @@ export default new Vuex.Store({
             login: "",
             pass: ""
         },
+        targets: {},
     },
     mutations: {
         setUser(state, payload) {
@@ -17,6 +18,9 @@ export default new Vuex.Store({
         },
         logout(state) {
             state.user = {}
+        },
+        setTargets(state, payload) {
+            state.targets = payload
         }
     },
     actions: {
@@ -54,6 +58,17 @@ export default new Vuex.Store({
                     });
 
                 });
+        },
+        getTargets({
+            commit
+        }) {
+            return firebase
+                .database()
+                .ref('targets/')
+                .once('value', snapshot => {
+                    let data = snapshot.val();
+                    commit(`setTargets`, data)
+                })
         },
         logout({
             commit
