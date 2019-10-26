@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from 'firebase';
 import store from "../store";
+import {bus} from '../bus'
 import {
     Toast
 } from "toaster-js";
@@ -98,7 +99,9 @@ export default new Vuex.Store({
                     return firebase
                         .database()
                         .ref(`clients/` + store.state.uid)
-                        .set(data[store.state.uid]);
+                        .set(data[store.state.uid])
+                        .then(()=>{ bus.$emit('recieved')
+                        })
                 })
 
         },

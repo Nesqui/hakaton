@@ -41,23 +41,27 @@
             <mdb-card>
               <mdb-card-body class="pt-3 px-3 pb-3">
                 <mdb-card-title>Зарплатный проект</mdb-card-title>
-                  <div class="progress-wrapper">
-                    0
-                    <mdb-progress
-                      :height="2"
-                      :max="currentZpTarget"
-                      :value="user.employees_amount"
-                      color="blue"
-                      class="mx-1"
-                    ></mdb-progress>
-                    {{currentZpTarget}}
+                <div class="progress-wrapper">
+                  0
+                  <mdb-progress
+                    :height="2"
+                    :max="currentZpTarget"
+                    :value="user.employees_amount"
+                    color="blue"
+                    class="mx-1"
+                  ></mdb-progress>
+                  {{currentZpTarget}}
+                </div>
+                <div class="w-100 d-flex align-items-center justify-content-between">
+                  <div>
+                    <span class="grey">{{user.employees_amount}}</span> Количество сотрудников
                   </div>
-                  <div class="w-100 d-flex align-items-center justify-content-between">
-                    <div>
-                      <span class="grey">{{user.employees_amount}}</span> Количество сотрудников
-                    </div>
-                    <mdb-btn @click.native="addStaff"  class="green-btn cursor-pointer">Добавить</mdb-btn>
-                  </div>
+                  <mdb-btn
+                    @click.native="addStaff"
+                    class="green-btn cursor-pointer"
+                    :disabled="disabledButton"
+                  >Добавить</mdb-btn>
+                </div>
               </mdb-card-body>
             </mdb-card>
           </div>
@@ -95,6 +99,11 @@ import {
 } from "mdbvue";
 export default {
   name: "home",
+  data() {
+    return {
+      disabledButton: false
+    };
+  },
   methods: {
     addUser() {
       this.$store.dispatch(`addUser`);
@@ -103,6 +112,7 @@ export default {
       bus.$emit(`openZpInfo`, `zpInfo`);
     },
     addStaff() {
+      this.disabledButton=true
       this.$store.dispatch(`addStaff`).then(() => {
         this.$store.dispatch(`getUsers`).then(() => {
           for (let i = 0; i < this.targets[`zp`].length; i++) {
@@ -148,6 +158,12 @@ export default {
     mdbCardBody,
     mdbCardTitle,
     mdbBtn
+  },
+  beforeMount() {
+    bus.$on("recieved", () =>
+    {
+      this.disabledButton = false
+    })
   }
 };
 </script>

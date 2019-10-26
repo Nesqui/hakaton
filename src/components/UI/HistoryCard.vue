@@ -1,6 +1,5 @@
 <template>
   <div class="history-card">
-    {{this.user.history[0].bonus}}
     <mdb-card>
       <mdb-card-body>
         <mdb-card-text>
@@ -98,6 +97,7 @@ h4 {
 }
 .history-card {
   margin: 0;
+  
   p {
     color: #0e3263;
     font-size: 13px;
