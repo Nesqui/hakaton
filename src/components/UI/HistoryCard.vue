@@ -1,11 +1,11 @@
 <template>
   <div class="history-card">
-    {{this.user }}
+    {{this.user.history[0].bonus}}
     <mdb-card>
       <mdb-card-body>
         <mdb-card-text>
           <mdb-row>
-            <mdb-col class="history-card-li" lg="8  ">История начисления бонусов</mdb-col>
+            <mdb-col class="history-card-li">История начисления бонусов</mdb-col>
             <mdb-col class="balance">
               <svg
                 width="18"
@@ -22,8 +22,7 @@
                 />
               </svg>
               {{this.user.sibCoins}} SibCoins
-              <mdb-btn>Потратить на привелегии</mdb-btn>
-
+              <div class="market-button">Потратить на привелегии</div>
             </mdb-col>
           </mdb-row>
           <mdb-row
@@ -31,7 +30,10 @@
             v-for="(bonus, index) in user.history"
             :key="index"
           >
-            <mdb-col class="d-flex" lg="8">Вы получили {{bonus.bonus}} бонусов</mdb-col>
+            <mdb-col
+              class="d-flex"
+              lg="8"
+            >+ {{bonus.bonus}} SibCoin В компании теперь {{showDescription(bonus.bonus)}} сотрудников</mdb-col>
             <mdb-col class="date" lg="4">27.10.19</mdb-col>
 
             <mdb-col></mdb-col>
@@ -43,7 +45,7 @@
 </template>
 
 <script>
-import { mdbCard, mdbCardBody, mdbCardText, mdbRow, mdbCol,mdbBtn } from "mdbvue";
+import { mdbCard, mdbCardBody, mdbCardText, mdbRow, mdbCol } from "mdbvue";
 
 export default {
   components: {
@@ -51,12 +53,39 @@ export default {
     mdbCardBody,
     mdbCardText,
     mdbRow,
-    mdbCol,
-    mdbBtn
+    mdbCol
   },
   computed: {
+    targets() {
+      return this.$store.state.targets;
+    },
+    currentZpTarget() {
+      return this.user.employees_amount <= 5
+        ? this.targets[`zp`][0]["max"]
+        : this.user.employees_amount <= 10
+        ? this.targets[`zp`][1]["max"]
+        : this.user.employees_amount <= 25
+        ? this.targets[`zp`][2]["max"]
+        : this.user.employees_amount <= 50
+        ? this.targets[`zp`][3]["max"]
+        : this.user.employees_amount <= 99
+        ? this.targets[`zp`][4]["max"]
+        : this.user.employees_amount <= 100
+        ? this.targets[`zp`][5]["max"]
+        : `max`;
+    },
     user() {
       return this.$store.state.user;
+    }
+  },
+  methods: {
+    showDescription(bonus) {
+      for (let index = 0; index < this.targets["zp"].length; index++) {
+        const element = this.targets["zp"][index];
+        if (+element.bonus === +bonus) {
+          return element.max;
+        }
+      }
     }
   }
 };
@@ -91,5 +120,15 @@ h4 {
 .date {
   font-size: 13px;
   color: #4c5862;
+}
+.market-button {
+  text-align: left;
+  margin: 1rem;
+  padding: 5px;
+  font-size: 11px;
+  line-height: 1;
+  background-color: #2ed47a;
+  border-radius: 4px;
+  color: white;
 }
 </style>
