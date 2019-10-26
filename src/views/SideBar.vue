@@ -8,7 +8,7 @@
       >Назад</a>
       <mdb-row class="active-bonuses">
         <mdb-col v-if="!currentObjective">
-          <h3>Активные бонусы</h3>
+          <achivments></achivments>
         </mdb-col>
         <mdb-col v-if="currentObjective===`zpInfo`">
           <organizationCard></organizationCard>
@@ -16,7 +16,7 @@
       </mdb-row>
       <mdb-row class="history">
         <mdb-col>
-          <h3>История бонусов</h3>
+          <h3>Бонусы</h3>
         </mdb-col>
         <mdb-col class="m-2">
           <historyCard />
@@ -32,6 +32,7 @@
 import { bus } from "../bus";
 import { mdbRow, mdbCol } from "mdbvue";
 import organizationCard from "../components/products/Organization";
+import achivments from "../views/achivments/achievments"
 import historyCard from "@/components/UI/HistoryCard.vue";
 export default {
   name: `sidebar`,
@@ -40,13 +41,14 @@ export default {
       currentObjective: null
     };
   },
-  components: { mdbRow, mdbCol, historyCard, organizationCard },
+  components: { mdbRow, mdbCol, historyCard, organizationCard,achivments},
   methods: {
     logout() {
       this.$store.dispatch(`logout`);
     },
     showZpInfo() {}
   },
+
   beforeMount() {
     bus.$on(`openZpInfo`, payload => {
       this.currentObjective = payload;
@@ -59,6 +61,9 @@ export default {
 .sidebar {
   background-color: white;
   height: 92vh;
+  h3{
+    color: #109CF1;
+  }
   .active-bonuses {
     margin: 0;
   }
@@ -68,6 +73,7 @@ export default {
     margin: 0;
     width: 100%;
     right: 0;
+    background: #eafbf2;
   }
   .full-w-btn {
     background-color: rgba(204, 204, 204, 0.349);

@@ -11,8 +11,7 @@
     </p>
     <p>
       Получено бонусов:
-      <span>
-    {{bounsesSumm}}</span>
+      <span>{{bounsesSumm}}</span>
     </p>
   </div>
 </template>

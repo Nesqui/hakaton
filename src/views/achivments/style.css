@@ -1,0 +1,145 @@
+.sidebar__content {
+	width: 360px;
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 13px;
+	padding-bottom: 13px;
+	outline: 1px solid gray;
+}
+
+.sidebar__header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 29px;
+}
+
+.sidebar__title {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  margin: 0;
+  color: #109CF1;
+}
+
+.sidebar__period {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.sidebar__period span {
+	color: #109CF1;
+	cursor: pointer;
+}
+
+.achievs__item:not(:last-child) {
+	margin-bottom: 11px;
+}
+
+.img-wrap {
+	display: flex;
+}
+
+.achievs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-bottom: 5px;
+}
+
+.achieve__content {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.achieve__info {
+	font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 19px;
+
+  letter-spacing: 0.01em;
+  color: #334D6E;
+}
+
+.achieve .img-wrap {
+	margin-right: 15px;
+}
+
+.achieve__title {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 19px;
+  margin-bottom: 0;
+
+  letter-spacing: 0.01em;
+  color: #334D6E;
+}
+
+.achieve__desc {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  margin: 0;
+
+  letter-spacing: 0.01em;
+  color: #6A707E;
+}
+
+.achieve--complete .achieve__desc {
+	color: #2ED47A;
+}
+
+.progress {
+	height: 4px;
+	margin-bottom: 3px;
+}
+
+.progress-bar {
+	background-color: #2ED47A;
+	height: 4px;
+}
+
+.progress__vals {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 9px;
+  line-height: 13px;
+
+  text-align: center;
+  letter-spacing: 0.01em;
+
+  color: #6A707E;
+}
+
+.achievs__link {
+	display: block;
+	font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: right;
+  margin: 0;
+
+  letter-spacing: 0.01em;
+  color: #109CF1;
+}
