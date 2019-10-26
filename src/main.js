@@ -1,15 +1,11 @@
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbvue/build/css/mdb.css';
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import BootstrapVue from 'bootstrap-vue'
-
-Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
-
 new Vue({
     router,
     store,
