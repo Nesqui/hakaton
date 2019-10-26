@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <mdb-container>
-      <sidebar />
       <mdb-row>
         <mdb-col>
           <h1>

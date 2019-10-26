@@ -1,13 +1,27 @@
 <template>
   <div class="sidebar">
-    <ul>
-      <li>1</li>
-    </ul>
+    <mdb-row>
+      <mdb-col>
+        <ul>
+          <li>1</li>
+        </ul>
+      </mdb-col>
+    </mdb-row>
+    <mdb-row>
+      <mdb-col>
+        <h2>История</h2>
+      </mdb-col>
+      <mdb-col>
+        <historyCard />
+      </mdb-col>
+    </mdb-row>
   </div>
 </template>
 
 <script>
-export default {};
+import { mdbRow, mdbCol } from "mdbvue";
+import historyCard from "@/components/UI/HistoryCard.vue";
+export default { components: mdbRow, mdbCol, historyCard };
 </script>
 
 <style scoped lang="less">
@@ -16,7 +30,9 @@ export default {};
   color: white;
   height: 100vh;
   position: absolute;
-  width: 15vw;
+  width: 100%;
   right: 0;
+  display: flex;
+  flex-direction: column;
 }
 </style>
