@@ -1,10 +1,17 @@
 <template>
   <div class="sidebar d-flex justify-content-between flex-column">
     <div>
+      <a
+        v-if="currentObjective"
+        class="full-w-btn d-flex justify-content-center"
+        @click="currentObjective = ``"
+      >Назад</a>
       <mdb-row class="active-bonuses">
-        <mdb-col>
+        <mdb-col v-if="false">
           <h3>Активные бонусы</h3>
-          <mdb-progress :height="10" :value="20" />
+        </mdb-col>
+        <mdb-col v-if="currentObjective===`zpInfo`">
+          <organizationCard></organizationCard>
         </mdb-col>
       </mdb-row>
       <mdb-row class="history">
@@ -16,7 +23,7 @@
         </mdb-col>
       </mdb-row>
     </div>
-    <div class="d-flex justify-content-center logout-btn">
+    <div class="d-flex justify-content-center full-w-btn">
       <a @click="logout">Выйти</a>
     </div>
   </div>
@@ -24,14 +31,17 @@
 
 <script>
 import { bus } from "../bus";
-import { mdbRow, mdbCol, mdbProgress } from "mdbvue";
+import { mdbRow, mdbCol } from "mdbvue";
+import organizationCard from "../components/products/Organization";
 import historyCard from "@/components/UI/HistoryCard.vue";
 export default {
   name: `sidebar`,
   data() {
-    return {};
+    return {
+      currentObjective: {}
+    };
   },
-  components: { mdbRow, mdbCol, historyCard, mdbProgress },
+  components: { mdbRow, mdbCol, historyCard, organizationCard },
   methods: {
     logout() {
       this.$store.dispatch(`logout`);
@@ -39,7 +49,9 @@ export default {
     showZpInfo() {}
   },
   beforeMount() {
-    bus.$on(`openZpInfo`, this.showZpInfo);
+    bus.$on(`openZpInfo`, payload => {
+      this.currentObjective = payload;
+    });
   }
 };
 </script>
@@ -58,12 +70,12 @@ export default {
     width: 25vw;
     right: 0;
   }
-  .logout-btn {
+  .full-w-btn {
     width: 100%;
     display: block;
     justify-content: center;
     background-color: rgba(204, 204, 204, 0.349);
-    padding: 0.75rem 0;
+    padding: 0.45rem 0;
     cursor: pointer;
   }
 }

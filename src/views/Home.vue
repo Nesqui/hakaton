@@ -53,7 +53,7 @@ export default {
       this.$store.dispatch(`addUser`);
     },
     openZpInfo() {
-      bus.$emit(`openZpInfo`);
+      bus.$emit(`openZpInfo`, `zpInfo`);
     }
   },
   computed: {
