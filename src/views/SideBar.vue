@@ -1,5 +1,6 @@
 <template>
-  <div class="sidebar">
+  <div class="sidebar d-flex justify-content-between flex-column">
+    <div>
     <mdb-row class="active-bonuses">
       <mdb-col>
         <h3>Активные бонусы</h3>
@@ -13,12 +14,10 @@
         <historyCard />
       </mdb-col>
     </mdb-row>
-    <div class="sidebar d-flex flex-column justify-content-between">
-      <ul>
-        <li>1</li>
-      </ul>
+    </div>
+    <div class="d-flex justify-content-center logout-btn">
       <a @click="logout">
-        <div class="logout-btn">Выйти</div>
+       Выйти
       </a>
     </div>
   </div>
@@ -54,7 +53,6 @@ export default {
 .sidebar {
   background-color: white;
   height: 100vh;
-  position: absolute;
   .active-bonuses {
     margin: 0;
   }
@@ -64,14 +62,15 @@ export default {
     margin: 0;
     width: 25vw;
     right: 0;
+  
+  }
     .logout-btn {
       width: 100%;
-      display: flex;
+      display: block;
       justify-content: center;
       background-color: rgba(204, 204, 204, 0.349);
       padding: 0.75rem 0;
       cursor: pointer;
     }
-  }
 }
 </style>
