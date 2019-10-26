@@ -19,7 +19,7 @@
       <!-- <span>Ваш логин: {{user.login}}</span> -->
       <span class="d-flex">
         Текущий счет: {{user.current_cash}}
-        <img src="../assets/ruble.svg" alt class="img-fluid" />
+        <img @click="addMoney" src="../assets/ruble.svg" alt class="img-fluid" />
       </span>
       <!-- <span class="d-flex">
           SC: {{user.sibCoins}}
@@ -35,7 +35,14 @@ export default {
     user() {
       return this.$store.state.user;
     }
-  }
+  },
+  methods: {
+    addMoney() {
+      this.$store.dispatch(`addMoney`).then(()=>{
+        this.$store.dispatch(`getUsers`)
+      })
+    }
+  },
 };
 </script>
 

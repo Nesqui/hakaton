@@ -135,13 +135,20 @@
           </div>
         </li>
       </ul>
-      <a class="achievs__link" href="#">Смотреть все</a>
+      <a class="achievs__link" @click="showModal = true">Смотреть все</a>
     </div>
+    <amodal @closeModal="showModal=false" :showModal="showModal" v-if="showModal"></amodal>
   </div>
 </template>
 
 <script>
+import amodal from './AchivmentsModal'
 export default {
+    data() {
+        return {
+            showModal: false
+        }
+    },
   computed: {
     achivments() {
       return this.$store.state.user.achivments;
@@ -159,7 +166,8 @@ export default {
         }
       }
     }
-  }
+  },
+  components:{amodal}
 };
 </script>
 

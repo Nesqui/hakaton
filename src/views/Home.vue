@@ -133,6 +133,9 @@ export default {
     targets() {
       return this.$store.state.targets;
     },
+    transactions(){
+      return this.$store.state.transactions
+    },
     currentZpTarget() {
       return this.user.employees_amount <= 5
         ? this.targets[`zp`][0]["max"]

@@ -28,10 +28,14 @@ export default {
   },
   beforeMount() {
     this.getTargets();
+    this.getTransactions();
   },
   methods: {
     getTargets() {
       this.$store.dispatch(`getTargets`);
+    },
+    getTransactions(){
+      this.$store.dispatch(`getTransactions`);
     }
   },
   computed: {
