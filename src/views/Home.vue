@@ -5,7 +5,7 @@
         <div class="col">
           <h1>
             123
-            <mdb-btn>123</mdb-btn>
+            <mdb-btn>123</mdb-btn><sidebar/>
           </h1>
         </div>
       </div>
@@ -15,7 +15,7 @@
 
 <script>
 import { mdbBtn } from "mdbvue";
-
+import sidebar from '@/components/UI/SideBar.vue'
 export default {
   name: "home",
   methods: {
@@ -23,6 +23,6 @@ export default {
       this.$store.dispatch(`addUser`);
     }
   },
-  components: { mdbBtn }
+  components: { mdbBtn, sidebar }
 }
 </script>
