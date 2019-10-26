@@ -1,41 +1,44 @@
 <template>
   <div class="history-card">
+      {{this.user   }}
     <mdb-card>
       <mdb-card-body>
-        <mdb-card-title>
-          <h4>История бонусов</h4>
-        </mdb-card-title>
-        <mdb-card-text><mdb-row>
-            <mdb-col lg="8" class="d-flex">
-              <img src="@/assets/img/achievement.jpg" alt class="achievement-img" />
-              <p>Бонус скидка на обслуживание счёта</p>
-            </mdb-col>
-            <mdb-col lg="4" class="date">26.10.19</mdb-col>
-            <mdb-row><mdb-col>Вы совершили 50 транзакий</mdb-col></mdb-row>
-          </mdb-row></mdb-card-text>
+        <mdb-card-text>
+          <mdb-row>
+            <mdb-col class="history-card-li" lg="8  ">История начисления бонусов</mdb-col>
+            <mdb-col class="balance">{{this.user.sibCoins}}</mdb-col>
+          </mdb-row>
+          <mdb-row
+            class="d-flex history-card-li"
+            v-for="(bonus, index) in user.history"
+            :key="index"
+          >
+            <mdb-col class="d-flex" lg="8">Вы получили {{bonus.bonus}} бонусов</mdb-col>
+            <mdb-col class="date" lg="4">27.10.19</mdb-col>
+           
+            <mdb-col></mdb-col>
+          </mdb-row>
+        </mdb-card-text>
       </mdb-card-body>
     </mdb-card>
   </div>
 </template>
 
 <script>
-import {
-  mdbCard,
-  mdbCardBody,
-  mdbCardTitle,
-  mdbCardText,
-  mdbRow,
-  mdbCol
-} from "mdbvue";
+import { mdbCard, mdbCardBody, mdbCardText, mdbRow, mdbCol } from "mdbvue";
 
 export default {
   components: {
     mdbCard,
     mdbCardBody,
-    mdbCardTitle,
     mdbCardText,
     mdbRow,
     mdbCol
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
   }
 };
 </script>
@@ -51,6 +54,15 @@ h4 {
     color: #0e3263;
     font-size: 13px;
   }
+}
+.history-card-li {
+  border-bottom: 1px;
+  border-block-end-style: solid;
+}
+.balance {
+  text-align: end;
+  border-bottom: 1px;
+  border-block-end-style: solid;
 }
 .achievement-img {
   border-radius: 50%;

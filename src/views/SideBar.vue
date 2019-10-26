@@ -16,7 +16,7 @@
       </mdb-row>
       <mdb-row class="history">
         <mdb-col>
-          <h3>История бонусов</h3>
+          <h3>Бонусы</h3>
         </mdb-col>
         <mdb-col class="m-2">
           <historyCard />
@@ -48,6 +48,7 @@ export default {
     },
     showZpInfo() {}
   },
+
   beforeMount() {
     bus.$on(`openZpInfo`, payload => {
       this.currentObjective = payload;
@@ -60,6 +61,9 @@ export default {
 .sidebar {
   background-color: white;
   height: 100vh;
+  h3{
+    color: #109CF1;
+  }
   .active-bonuses {
     margin: 0;
   }
@@ -69,6 +73,7 @@ export default {
     margin: 0;
     width: 25vw;
     right: 0;
+    background: #eafbf2;
   }
   .full-w-btn {
     width: 100%;
