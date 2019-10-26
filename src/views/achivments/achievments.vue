@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <div class="sidebar__content">
       <div class="sidebar__header">
         <h2 class="sidebar__title">Мои достижения</h2>
@@ -21,14 +21,21 @@
       </div>
       <ul class="achievs">
         <!-- 1st -->
-        <li class="achievs__item achieve" data-id="1">
+        <li
+          v-for="(achivment, index) in achivments"
+          :key="index"
+          class="achievs__item achieve"
+          data-id="1"
+        >
           <div class="achieve__content">
             <p class="img-wrap">
               <img class="achieve__img" src="./achieve-1.svg" width="32" height="32" alt="icon" />
             </p>
             <div class="achieve__info">
               <h3 class="achieve__title">Сутки транзакций без комиссии</h3>
-              <p class="achieve__desc">Выдаётся за каждые 1000 транзакций</p>
+              <p
+                class="achieve__desc"
+              >Выдаётся за регистрацию {{showStaffCount(achivment.wasBonused)}} зарплатных карт</p>
             </div>
           </div>
           <div class="progress">
@@ -134,7 +141,26 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    achivments() {
+      return this.$store.state.user.achivments;
+    },
+    targets() {
+      return this.$store.state.targets;
+    }
+  },
+  methods: {
+    showStaffCount(bonus) {
+      for (let index = 0; index < this.targets["zp"].length; index++) {
+        const element = this.targets["zp"][index];
+        if (+element.bonus === +bonus) {
+          return element.max;
+        }
+      }
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -190,6 +216,8 @@ export default {};
   padding: 0;
   list-style: none;
   margin-bottom: 5px;
+  overflow-y: scroll;
+  max-height: 24vh;
 }
 
 .achieve__content {
