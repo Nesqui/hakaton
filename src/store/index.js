@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from 'firebase';
+import store from "../store";
+import {
+    Toast
+} from "toaster-js";
 
 Vue.use(Vuex)
 
@@ -11,6 +15,7 @@ export default new Vuex.Store({
             pass: ""
         },
         targets: {},
+        uid: ""
     },
     mutations: {
         setUser(state, payload) {
@@ -21,6 +26,9 @@ export default new Vuex.Store({
         },
         setTargets(state, payload) {
             state.targets = payload
+        },
+        setUid(state, payload) {
+            state.uid = payload
         }
     },
     actions: {
@@ -33,6 +41,78 @@ export default new Vuex.Store({
                     password: `test`
                 });
         },
+        addZpHistory({
+            commit
+        }, value) {
+            return firebase
+                .database()
+                .ref('clients/')
+                .once('value', snapshot => {
+                    let data = snapshot.val();
+                    if (!data[store.state.uid].achivments) {
+                        data[store.state.uid].achiments = [{
+                            type: "zp",
+                            activated: false
+                        }]
+                    } else {
+                        data[store.state.uid].achiments.push({
+                            type: "zp",
+                            activated: false
+                        })
+                    }
+
+                    if (!data[store.state.uid].history) {
+                        data[store.state.uid].history = [{
+                            bonus: value,
+                            type: "zp"
+                        }]
+                    } else
+                        data[store.state.uid].history.push({
+                            bonus: value,
+                            type: "zp"
+                        });
+                    return firebase
+                        .database()
+                        .ref(`clients/` + store.state.uid)
+                        .set(data[store.state.uid])
+                        .then(() => {
+                            new Toast(`Получен бонус от SibCity в размере: ` + value + ` SibCoin`)
+                            return firebase
+                                .database()
+                                .ref('clients/')
+                                .once('value', snapshot => {
+                                    let data = snapshot.val();
+                                    commit('setUser', data[store.state.uid]);
+                                })
+                        })
+                })
+        },
+        addStaff() {
+            return firebase
+                .database()
+                .ref('clients/')
+                .once('value', snapshot => {
+                    let data = snapshot.val();
+                    console.log(data);
+                    data[store.state.uid].employees_amount++;
+                    return firebase
+                        .database()
+                        .ref(`clients/` + store.state.uid)
+                        .set(data[store.state.uid]);
+                })
+
+        },
+        getUsers({
+            commit
+        }) {
+            return firebase
+                .database()
+                .ref('clients/')
+                .once('value', snapshot => {
+                    let data = snapshot.val();
+                    commit('setUser', data[store.state.uid]);
+                })
+        },
         auth({
             commit
         }, fields) {
@@ -43,17 +123,17 @@ export default new Vuex.Store({
                     let data = snapshot.val();
                     let founded = false;
                     for (let element in data) {
-                        console.log(`vot`, data[element]);
                         if (data[element].login === fields.login && data[element].password === fields.password) {
                             commit('setUser', data[element]);
+                            commit(`setUid`, element)
                             founded = true;
-                            Vue.toasted.show('Добро пожаловать', {
+                            new Toast('Добро пожаловать', {
                                 /* some option */
                             });
                             break;
                         }
                     }
-                    if (!founded) Vue.toasted.show('Логин или пароль неверный', {
+                    if (!founded) new Toast('Логин или пароль неверный', {
                         /* some option */
                     });
 
