@@ -1,12 +1,30 @@
 <template>
   <div class="history-card">
-      {{this.user   }}
+    {{this.user }}
     <mdb-card>
       <mdb-card-body>
         <mdb-card-text>
           <mdb-row>
             <mdb-col class="history-card-li" lg="8  ">История начисления бонусов</mdb-col>
-            <mdb-col class="balance">{{this.user.sibCoins}}</mdb-col>
+            <mdb-col class="balance">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="9" cy="9" r="9" fill="#FFCC6A" />
+                <circle cx="9" cy="9" r="7" fill="#FFE073" />
+                <path
+                  d="M9 4L10.1226 7.45492H13.7553L10.8164 9.59017L11.9389 13.0451L9 10.9098L6.06107 13.0451L7.18364 9.59017L4.24472 7.45492H7.87743L9 4Z"
+                  fill="#50B447"
+                />
+              </svg>
+              {{this.user.sibCoins}} SibCoins
+              <mdb-btn>Потратить на привелегии</mdb-btn>
+
+            </mdb-col>
           </mdb-row>
           <mdb-row
             class="d-flex history-card-li"
@@ -15,7 +33,7 @@
           >
             <mdb-col class="d-flex" lg="8">Вы получили {{bonus.bonus}} бонусов</mdb-col>
             <mdb-col class="date" lg="4">27.10.19</mdb-col>
-           
+
             <mdb-col></mdb-col>
           </mdb-row>
         </mdb-card-text>
@@ -25,7 +43,7 @@
 </template>
 
 <script>
-import { mdbCard, mdbCardBody, mdbCardText, mdbRow, mdbCol } from "mdbvue";
+import { mdbCard, mdbCardBody, mdbCardText, mdbRow, mdbCol,mdbBtn } from "mdbvue";
 
 export default {
   components: {
@@ -33,7 +51,8 @@ export default {
     mdbCardBody,
     mdbCardText,
     mdbRow,
-    mdbCol
+    mdbCol,
+    mdbBtn
   },
   computed: {
     user() {
