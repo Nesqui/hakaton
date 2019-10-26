@@ -15,7 +15,7 @@
           </mdb-row>
           <mdb-row>
             <mdb-col class="d-flex justify-content-center">
-              <mdb-btn  @click="auth">Войти</mdb-btn>
+              <mdb-btn @click="auth">Войти</mdb-btn>
             </mdb-col>
           </mdb-row>
         </div>

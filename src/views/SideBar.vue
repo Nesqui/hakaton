@@ -12,6 +12,6 @@ export default {
 .sidebar{
     background-color: #0e3263;
     color: white;
-    height:90vh;
+    height:100vh;
 }
 </style>
