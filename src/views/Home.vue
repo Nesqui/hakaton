@@ -5,7 +5,11 @@
         <div class="col">
           <h1>
             123
+<<<<<<< HEAD
             <mdb-btn>123</mdb-btn><sidebar/>
+=======
+            <mdb-btn @click="addUser">123</mdb-btn>
+>>>>>>> c0dbe8d669157e23f531d1a870bcd27a0d70e08b
           </h1>
         </div>
       </div>

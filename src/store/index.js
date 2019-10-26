@@ -11,40 +11,44 @@ export default new Vuex.Store({
             pass: ""
         },
     },
-    mutations: {},
+    mutations: {
+        setUser(state, payload) {
+            state.user = payload
+        }
+    },
     actions: {
         addUser() {
             firebase
                 .database()
-                .ref('Payments/' + `clients/`)
+                .ref(`clients/`)
                 .push({
-                    test: `test`
+                    login: `test`,
+                    password: `test`
                 });
         },
         auth({
             commit
-        }, login = null, password = null) {
-            firebase
+        }, fields) {
+            return firebase
                 .database()
                 .ref('clients/')
                 .once('value', snapshot => {
                     let data = snapshot.val();
-                    let tableData = [];
+                    console.log(`fields`, fields);
+
                     for (let element in data) {
-                        if (element === login) console.log(element);
-                        if (element === password) {
-                            console.log(`da verno`);
-
-                        }
-                        console.log(data);
-
+                        console.log(`vot`, data[element]);
+                        if (data[element].login === fields.login && data[element].password === fields.password) {
+                            commit('setUser', data[element]);
+                        } else console.log(element);
                     }
-                    commit('setUsersByAgent', tableData);
                 });
         }
     },
     getters: {
-        isAuth(state) { return state.user.login ? true : false }
+        isAuth(state) {
+            return state.user.login ? true : false
+        }
     },
     modules: {}
 })
