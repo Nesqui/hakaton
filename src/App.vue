@@ -63,9 +63,9 @@ body {
     height: 150px;
   }
   .scroll-navs::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 4px rgba(31, 4, 66, 0.3);
-    border-radius: 15px;
-    background-color: #f0f0f0e3;
+    -webkit-box-shadow: inset 0 0 2px rgba(31, 4, 66, 0.3);
+    border-radius: 15px ;
+    background-color: #f8f8f8e3;
   }
   .scroll-navs::-webkit-scrollbar {
     width: 8px;

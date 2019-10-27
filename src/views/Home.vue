@@ -3,7 +3,7 @@
     <div class="grid-map">
       <sidebar />
       <mdb-row>
-        <mdb-col class="d-flex justify-content-center align-items-center flex-column">
+        <mdb-col class="d-flex justify-content-center align-items-center flex-colimn animated slow fadeInDown">
           <div class="pl-5 pt-5">
             <div class="d-flex">
               <img src="../assets/ekvairing.svg" alt class="img-fluid objective-img ml-5 my-2" />
@@ -15,7 +15,7 @@
           </div>
         </mdb-col>
         <mdb-col></mdb-col>
-        <mdb-col class="d-flex justify-content-center align-items-center flex-column">
+        <mdb-col class="d-flex justify-content-center align-items-center flex-colimn animated slow fadeInDown">
           <div class="pl-5 pt-5">
             <div class="d-flex">
               <img src="../assets/invest.svg" alt class="img-fluid objective-img ml-5 my-2" />
@@ -29,7 +29,7 @@
       </mdb-row>
 
       <mdb-row>
-        <mdb-col class="d-flex justify-content-center align-items-center flex-column">
+        <mdb-col class="d-flex justify-content-center align-items-center flex-colimn animated slow fadeInDown">
           <div class="pt-5 mt-5 mr-5">
             <div class="d-flex">
               <img src="../assets/inkasaciya.svg" alt class="img-fluid objective-img mr-5" />
@@ -40,7 +40,7 @@
             </div>
           </div>
         </mdb-col>
-        <mdb-col class="d-flex justify-content-center align-items-center flex-column">
+        <mdb-col class="d-flex justify-content-center align-items-center flex-colimn animated slow fadeInDown">
           <div class="d-flex">
             <img
               @click="openZpInfo"
@@ -81,7 +81,15 @@
 
       <mdb-row>
         <mdb-col></mdb-col>
-        <mdb-col></mdb-col>
+        <mdb-col class="d-flex justify-content-center align-items-center flex-column animated slow fadeInDown">
+          <div class="d-flex">
+            <img src="../assets/bank.svg" alt class="img-fluid objective-img" />
+          </div>
+          <div class="card-objective">
+              <h4>Банк. гарантия</h4>
+              <mdb-progress :height="2" :value="13" color="blue"></mdb-progress>
+            </div>
+        </mdb-col>
         <mdb-col class="d-flex justify-content-center align-items-center flex-column">
           <div class="d-flex">
             <img src="../assets/lising.svg" alt class="img-fluid objective-img" />

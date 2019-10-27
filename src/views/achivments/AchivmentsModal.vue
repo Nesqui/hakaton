@@ -16,7 +16,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <ul class="achievs">
+          <ul class="achievs d-flex justify-content-center flex-wrap">
             <!-- 1st -->
             <li
               class="achievs__item achieve"
@@ -288,6 +288,12 @@ export default {
   padding-top: 13px;
   padding-bottom: 13px;
   outline: 1px solid gray;
+}
+li {
+  width: 300px
+}
+li:nth-child(odd){
+  margin-right:30px;
 }
 
 .sidebar__header {

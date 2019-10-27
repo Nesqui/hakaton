@@ -29,14 +29,14 @@
           </div>
         </div>
       </div>
-      <mdb-card>
-        <mdb-card-body>
-          <mdb-card-text class="row-wrapper scroll-wrapper scroll-navs">
+      <mdb-card v-if="user.history">
+        <mdb-card-body  class="scroll-wrapper scroll-navs">
+          <mdb-card-text class="scroll-wrapper ">
             <mdb-row>
               <mdb-col class="mb-3">История начисления бонусов</mdb-col>
             </mdb-row>
             <mdb-row
-              class="d-flex history-card-li  animated fadeIn"
+              class="d-flex history-card-li animated fadeIn"
               v-for="(bonus, index) in user.history"
               :key="index"
             >
@@ -80,40 +80,42 @@
           </div>
         </div>
       </div>
-      <mdb-card>
-        <mdb-card-body>
-          <mdb-card-text class="row-wrapper">
-            <mdb-row
-              class="d-flex history-card-li  animated fadeIn"
-              v-for="(transaction, index) in transactions"
-              :key="index"
-            >
-              <mdb-col class="d-flex flex-column" lg="12">
-                <div class="d-flex justify-content-between align-items-center">
-                  <div>
-                    <span>{{transaction.value}} руб {{` `}}</span>
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 18 18"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle cx="9" cy="9" r="9" fill="#FFCC6A" />
-                      <circle cx="9" cy="9" r="7" fill="#FFE073" />
-                      <path
-                        d="M9 4L10.1226 7.45492H13.7553L10.8164 9.59017L11.9389 13.0451L9 10.9098L6.06107 13.0451L7.18364 9.59017L4.24472 7.45492H7.87743L9 4Z"
-                        fill="#50B447"
-                      />
-                    </svg>
+      <mdb-card class="scroll-wrapper">
+        <mdb-card-body class="scroll-wrapper scroll-navs">
+          <mdb-card-text class="row-wrapper ">
+            <div class="">
+              <mdb-row
+                class="d-flex history-card-li animated fadeIn"
+                v-for="(transaction, index) in transactions"
+                :key="index"
+              >
+                <mdb-col class="d-flex flex-column" lg="12">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <span>{{transaction.value}} руб {{` `}}</span>
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 18 18"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle cx="9" cy="9" r="9" fill="#FFCC6A" />
+                        <circle cx="9" cy="9" r="7" fill="#FFE073" />
+                        <path
+                          d="M9 4L10.1226 7.45492H13.7553L10.8164 9.59017L11.9389 13.0451L9 10.9098L6.06107 13.0451L7.18364 9.59017L4.24472 7.45492H7.87743L9 4Z"
+                          fill="#50B447"
+                        />
+                      </svg>
+                    </div>
+                    <div>27.10.19</div>
                   </div>
-                  <div>27.10.19</div>
-                </div>
-                <div>Была произведена транзация</div>
-              </mdb-col>
+                  <div>Была произведена транзация</div>
+                </mdb-col>
 
-              <mdb-col></mdb-col>
-            </mdb-row>
+                <mdb-col></mdb-col>
+              </mdb-row>
+            </div>
           </mdb-card-text>
         </mdb-card-body>
       </mdb-card>
@@ -185,7 +187,7 @@ h4 {
 }
 .row-wrapper {
   overflow-y: hidden;
-  overflow-x: hidden;  
+  overflow-x: hidden;
 }
 .bonus-title {
   p {

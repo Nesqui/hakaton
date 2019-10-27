@@ -4,7 +4,6 @@
       <div class="sidebar__header">
         <h2 class="sidebar__title">Мои достижения</h2>
         <p class="sidebar__period">
-          Показывать:
           <span>
             Неделя
             <svg
