@@ -96,6 +96,7 @@
           </div>
           <div class="d-flex align-items-center">
             <mdb-btn class="green-btn">Подключить лизинг</mdb-btn>
+            
           </div>
         </mdb-col>
       </mdb-row>
