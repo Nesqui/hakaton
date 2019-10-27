@@ -111,6 +111,7 @@ strong {
   text-align: center;
   letter-spacing: 0.02em;
   white-space: nowrap;
+  z-index: 99;
   cursor: pointer !important;
 }
 
