@@ -3,7 +3,7 @@
     <div class="container">
       <header class="header">
         <div class="logo">
-          <a class="logo__link" href="index.html">SibCity</a>
+          <a class="logo-link" href="index.html">SibCity</a>
         </div>
       </header>
       <div class="login-main">
@@ -11,8 +11,8 @@
         <div class="login-form">
           <form class="form" action="#" method="get" name="login-form">
             <p class="logo">SibCity</p>
-            <h2 class="login-form__title">Вход в личный кабинет</h2>
-            <p class="form__group">
+            <h2 class="login-form-title">Вход в личный кабинет</h2>
+            <p class="form-group">
               <label for="phone">Ваш номер телефона</label>
               <input
                 class="text-field"
@@ -22,9 +22,10 @@
                 placeholder="+ 7 (XXX) XXX-XX-XX"
                 v-model="fields.login"
                 required
+                @keyup.enter="auth"
               />
             </p>
-            <p class="form__group">
+            <p class="form-group password">
               <label for="pass">Пароль</label>
               <input
                 class="text-field"
@@ -35,18 +36,19 @@
                 label="Ваш пароль"
                 v-model="fields.password"
                 required
+                @keyup.enter="auth"
               />
             </p>
-            <a class="login-form__link" @click="auth">Войти в игру</a>
+            <a class="login-form-link" @click="auth">Войти в игру</a>
           </form>
         </div>
       </div>
       <div class="footer">
-        <div class="footer__logos">
-          <a class="logo__pixels" href="https://pixels.ru">
+        <div class="footer-logos">
+          <a class="logo-pixels" href="https://pixels.ru">
             <img src="../assets/pixels.svg" alt="pixels" />
           </a>
-          <a class="logo__uralsib" href="https://uralsib.ru">
+          <a class="logo-uralsib" href="https://uralsib.ru">
             <img src="../assets/uralsib-logo.svg" alt="uralsib" />
           </a>
         </div>
@@ -75,7 +77,10 @@ export default {
 
 <style lang="less" scoped>
 /* ЛОГИН */
-
+@font-face {
+  font-family: "Lobster, cursive";
+  src: url("https://fonts.googleapis.com/css?family=Lobster&display=swap");
+}
 .login {
   height: 100vh;
   width: 100%;
@@ -99,19 +104,20 @@ export default {
   /*background-color: #dee2e6;*/
 }
 
-.logo__link {
-  font-family: "Lobster", sans-serif;
+.logo-link {
+  font-family: "Lobster", cursive !important;
   font-style: normal;
   font-weight: normal;
   font-size: 30px;
   line-height: 37px;
-
   color: #ffffff;
   opacity: 0.9;
 }
 
-.logo__link:hover,
-.logo__link:focus {
+.logo-link:hover {
+  color: #ffffff;
+}
+.logo-link:focus {
   color: #ffffff;
 }
 
@@ -141,7 +147,7 @@ export default {
 }
 
 .login-form .logo {
-  font-family: "Lobster", sans-serif;
+  font-family: "Lobster", cursive !important;
   font-style: normal;
   font-weight: normal;
   font-size: 49px;
@@ -155,7 +161,7 @@ export default {
   margin: 0;
 }
 
-.login-form__title {
+.login-form-title {
   font-family: "Open Sans", sans-serif;
   font-style: normal;
   font-weight: 600;
@@ -165,20 +171,21 @@ export default {
   margin-bottom: 14px;
 }
 
-.login-form__link {
+.login-form-link {
   display: flex;
   width: 100%;
   justify-content: center;
   align-items: center;
   background: #2ed47a;
   border-radius: 4px;
-  color: white;
+  color: white !important;
   padding: 13px 20px;
 }
-
-.login-form__link:hover,
-.login-form__link:focus {
-  color: white;
+.login-form-link:hover {
+  color: white !important;
+}
+.login-form-link:focus {
+  color: white !important ;
 }
 
 .login-form label {
@@ -191,7 +198,7 @@ export default {
   letter-spacing: 0.01em;
 }
 
-.login-form .form__group {
+.login-form .form-group {
   margin-bottom: 20px;
 }
 
@@ -203,12 +210,15 @@ export default {
   padding: 16px 20px 12px 18px;
 }
 
-.footer__logos {
+.footer-logos {
   display: flex;
   align-items: flex-end;
 }
 
-.logo__pixels {
+.logo-pixels {
   margin-right: 20px;
+}
+.password {
+  margin-bottom: 30px !important;
 }
 </style>

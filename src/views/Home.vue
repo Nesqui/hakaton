@@ -95,7 +95,7 @@
             <img src="../assets/lising.svg" alt class="img-fluid objective-img" />
           </div>
           <div class="d-flex align-items-center">
-            <mdb-btn @click="addStaff" class="green-btn">Подключить лизинг</mdb-btn>
+            <mdb-btn class="green-btn">Подключить лизинг</mdb-btn>
           </div>
         </mdb-col>
       </mdb-row>
