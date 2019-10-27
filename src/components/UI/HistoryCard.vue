@@ -31,12 +31,12 @@
       </div>
       <mdb-card>
         <mdb-card-body>
-          <mdb-card-text>
+          <mdb-card-text class="row-wrapper">
             <mdb-row>
               <mdb-col class="mb-3">История начисления бонусов</mdb-col>
             </mdb-row>
             <mdb-row
-              class="d-flex history-card-li"
+              class="d-flex history-card-li  animated fadeIn"
               v-for="(bonus, index) in user.history"
               :key="index"
             >
@@ -82,9 +82,9 @@
       </div>
       <mdb-card>
         <mdb-card-body>
-          <mdb-card-text>
+          <mdb-card-text class="row-wrapper">
             <mdb-row
-              class="d-flex history-card-li"
+              class="d-flex history-card-li  animated fadeIn"
               v-for="(transaction, index) in transactions"
               :key="index"
             >
@@ -178,11 +178,15 @@ h4 {
 }
 .history-card {
   margin: 0;
-  max-height: 1 vh;
   p {
     color: #0e3263;
     font-size: 13px;
   }
+}
+.row-wrapper {
+  overflow-y: scroll;
+  overflow-x: hidden;  
+  max-height: 15vh;
 }
 .bonus-title {
   p {

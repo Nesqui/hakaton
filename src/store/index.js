@@ -3,6 +3,9 @@ import Vuex from 'vuex'
 import firebase from 'firebase';
 import store from "../store";
 import {
+    bus
+} from '../bus'
+import {
     Toast
 } from "toaster-js";
 
@@ -97,13 +100,30 @@ export default new Vuex.Store({
                         })
                 })
         },
+        createSuggest() {
+            return firebase
+                .database()
+                .ref('clients/')
+                .once('value', snapshot => {
+                    let data = snapshot.val();
+                    data[store.state.uid].suggests ? data[store.state.uid].suggests.push({
+                        type: `zp`
+                    }) : data[store.state.uid].suggests = [{
+                        type: "zp"
+                    }]
+                    return firebase
+                        .database()
+                        .ref(`clients/` + store.state.uid)
+                        .set(data[store.state.uid]);
+                })
+        },
         addMoney() {
             return firebase
                 .database()
                 .ref('clients/')
                 .once('value', snapshot => {
                     let data = snapshot.val();
-                    console.log(data);
+
                     data[store.state.uid].current_cash += 60000;
                     data[store.state.uid].transactions ? data[store.state.uid].transactions.push({
                         value: 60000
@@ -123,12 +143,15 @@ export default new Vuex.Store({
                 .ref('clients/')
                 .once('value', snapshot => {
                     let data = snapshot.val();
-                    console.log(data);
+
                     data[store.state.uid].employees_amount++;
                     return firebase
                         .database()
                         .ref(`clients/` + store.state.uid)
-                        .set(data[store.state.uid]);
+                        .set(data[store.state.uid])
+                        .then(() => {
+                            bus.$emit('recieved')
+                        })
                 })
 
         },

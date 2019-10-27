@@ -24,7 +24,7 @@
         <li
           v-for="(achivment, index) in achivments"
           :key="index"
-          class="achievs__item achieve"
+          class="achievs__item achieve animated fadeIn"
           data-id="1"
         >
           <div class="achieve__content">
@@ -60,24 +60,20 @@
               <img class="achieve__img" src="./achieve-2.svg" width="32" height="32" alt="icon" />
             </p>
             <div class="achieve__info">
-              <h3 class="achieve__title">Скидка на обслуживание 4000 руб</h3>
-              <p class="achieve__desc">Выдаётся за каждые 10 сотрудников</p>
+              <h3 class="achieve__title">Подарок от УралСиб Банка</h3>
+              <p class="achieve__desc">Выдаётся при достижении счетом определенного значения</p>
             </div>
           </div>
-          <div class="progress">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              style="width: 75%"
-              aria-valuenow="20"
-              aria-valuemin="0"
-              aria-valuemax="30"
-            ></div>
-          </div>
+             <mdb-progress
+                    :height="5"
+                    :max="getMaxTransaction"
+                    :value="user.current_cash"
+                    color="blue"
+                    class="mx-1 my-2"
+                  ></mdb-progress>
           <div class="progress__vals">
-            <span class="progress__val--curr">20</span>/
-            <span class="progress__val--all">30</span>
-            <span class="progress__val--unit">(+1)</span>
+            <span class="progress__val--curr">{{user.current_cash}}</span>/
+            <span class="progress__val--all">{{getMaxTransaction}}</span>
           </div>
         </li>
         <!-- 3nd -->
@@ -142,19 +138,37 @@
 </template>
 
 <script>
-import amodal from './AchivmentsModal'
+import {mdbProgress } from 'mdbvue';
+import amodal from "./AchivmentsModal";
 export default {
-    data() {
-        return {
-            showModal: false
-        }
-    },
+  data() {
+    return {
+      showModal: false
+    };
+  },
   computed: {
     achivments() {
       return this.$store.state.user.achivments;
     },
     targets() {
       return this.$store.state.targets;
+    },
+    transactions() {
+      return this.$store.state.transactions;
+    },
+    user() {
+      return this.$store.state.user;
+    },
+    getMaxTransaction() {
+      let founded = null
+      for (let index = 0; index < this.transactions.length; index++) {
+        const element = this.transactions[index];
+        if (this.user.current_cash < element.target) {
+          founded =  element.target;
+          break;
+        }
+      }
+      return founded
     }
   },
   methods: {
@@ -167,7 +181,7 @@ export default {
       }
     }
   },
-  components:{amodal}
+  components: { mdbProgress,amodal }
 };
 </script>
 

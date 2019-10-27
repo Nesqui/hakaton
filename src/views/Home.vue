@@ -66,7 +66,11 @@
                   <div>
                     <span class="grey">{{user.employees_amount}}</span> Количество сотрудников
                   </div>
-                  <mdb-btn @click.native="addStaff" class="green-btn cursor-pointer">Добавить</mdb-btn>
+                  <mdb-btn
+                    @click.native="addStaff"
+                    class="green-btn cursor-pointer"
+                    :disabled="disabledButton"
+                  >Добавить</mdb-btn>
                 </div>
               </mdb-card-body>
             </mdb-card>
@@ -105,6 +109,11 @@ import {
 } from "mdbvue";
 export default {
   name: "home",
+  data() {
+    return {
+      disabledButton: false
+    };
+  },
   methods: {
     addUser() {
       this.$store.dispatch(`addUser`);
@@ -113,6 +122,7 @@ export default {
       bus.$emit(`openZpInfo`, `zpInfo`);
     },
     addStaff() {
+      this.disabledButton=true
       this.$store.dispatch(`addStaff`).then(() => {
         this.$store.dispatch(`getUsers`).then(() => {
           for (let i = 0; i < this.targets[`zp`].length; i++) {
@@ -161,6 +171,12 @@ export default {
     mdbCardBody,
     mdbCardTitle,
     mdbBtn
+  },
+  beforeMount() {
+    bus.$on("recieved", () =>
+    {
+      this.disabledButton = false
+    })
   }
 };
 </script>
