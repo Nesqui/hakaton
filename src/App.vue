@@ -28,10 +28,14 @@ export default {
   },
   beforeMount() {
     this.getTargets();
+    this.getTransactions();
   },
   methods: {
     getTargets() {
       this.$store.dispatch(`getTargets`);
+    },
+    getTransactions(){
+      this.$store.dispatch(`getTransactions`);
     }
   },
   computed: {
@@ -49,6 +53,31 @@ body {
   background-color: #fafafa;
   overflow: hidden;
 }
+
+ .scroll-wrapper {
+    max-height: 150px;
+  }
+  .scroll-navs {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 150px;
+  }
+  .scroll-navs::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 4px rgba(31, 4, 66, 0.3);
+    border-radius: 15px;
+    background-color: #f0f0f0e3;
+  }
+  .scroll-navs::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 15px;
+    background-color: #2ed47a;
+  }
+  .scroll-navs::-webkit-scrollbar-thumb {
+    background-color: #2ed47a;
+    border: 1px solid #f0f0f0e3;
+    border-radius: 15px;
+  }
+  
 
 * {
   font-family: "Poppins", sans-serif;

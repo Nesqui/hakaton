@@ -2,7 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from 'firebase';
 import store from "../store";
-import {bus} from '../bus'
+import {
+    bus
+} from '../bus'
 import {
     Toast
 } from "toaster-js";
@@ -18,7 +20,8 @@ export default new Vuex.Store({
             history: []
         },
         targets: {},
-        uid: ""
+        uid: "",
+        transactions: [],
     },
     mutations: {
         setUser(state, payload) {
@@ -35,6 +38,9 @@ export default new Vuex.Store({
         },
         setUid(state, payload) {
             state.uid = payload
+        },
+        setTransactions(state, payload) {
+            state.transactions = payload
         }
     },
     actions: {
@@ -94,19 +100,57 @@ export default new Vuex.Store({
                         })
                 })
         },
+        createSuggest() {
+            return firebase
+                .database()
+                .ref('clients/')
+                .once('value', snapshot => {
+                    let data = snapshot.val();
+                    data[store.state.uid].suggests ? data[store.state.uid].suggests.push({
+                        type: `zp`
+                    }) : data[store.state.uid].suggests = [{
+                        type: "zp"
+                    }]
+                    return firebase
+                        .database()
+                        .ref(`clients/` + store.state.uid)
+                        .set(data[store.state.uid]);
+                })
+        },
+        addMoney() {
+            return firebase
+                .database()
+                .ref('clients/')
+                .once('value', snapshot => {
+                    let data = snapshot.val();
+
+                    data[store.state.uid].current_cash += 60000;
+                    data[store.state.uid].transactions ? data[store.state.uid].transactions.push({
+                        value: 60000
+                    }) : data[store.state.uid].transactions = [{
+                        value: 60000
+                    }]
+                    return firebase
+                        .database()
+                        .ref(`clients/` + store.state.uid)
+                        .set(data[store.state.uid]);
+                })
+
+        },
         addStaff() {
             return firebase
                 .database()
                 .ref('clients/')
                 .once('value', snapshot => {
                     let data = snapshot.val();
-                    console.log(data);
+
                     data[store.state.uid].employees_amount++;
                     return firebase
                         .database()
                         .ref(`clients/` + store.state.uid)
                         .set(data[store.state.uid])
-                        .then(()=>{ bus.$emit('recieved')
+                        .then(() => {
+                            bus.$emit('recieved')
                         })
                 })
 
@@ -157,6 +201,17 @@ export default new Vuex.Store({
                 .once('value', snapshot => {
                     let data = snapshot.val();
                     commit(`setTargets`, data)
+                })
+        },
+        getTransactions({
+            commit
+        }) {
+            return firebase
+                .database()
+                .ref('transactions/')
+                .once('value', snapshot => {
+                    let data = snapshot.val();
+                    commit(`setTransactions`, data)
                 })
         },
         logout({

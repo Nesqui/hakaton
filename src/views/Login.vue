@@ -22,6 +22,7 @@
                 placeholder="+ 7 (XXX) XXX-XX-XX"
                 v-model="fields.login"
                 required
+                @keyup.enter="auth"
               />
             </p>
             <p class="form-group password">
@@ -35,6 +36,7 @@
                 label="Ваш пароль"
                 v-model="fields.password"
                 required
+                @keyup.enter="auth"
               />
             </p>
             <a class="login-form-link" @click="auth">Войти в игру</a>

@@ -19,7 +19,12 @@
       <!-- <span>Ваш логин: {{user.login}}</span> -->
       <span class="d-flex">
         Текущий счет: {{user.current_cash}}
-        <img src="../assets/ruble.svg" alt class="img-fluid" />
+        <img
+          @click="addMoney"
+          src="../assets/ruble.svg"
+          alt
+          class="img-fluid"
+        />
       </span>
       <!-- <span class="d-flex">
           SC: {{user.sibCoins}}
@@ -34,6 +39,29 @@ export default {
   computed: {
     user() {
       return this.$store.state.user;
+    },
+
+    transactions() {
+      return this.$store.state.transactions;
+    }
+  },
+  methods: {
+    addMoney() {
+      this.$store.dispatch(`addMoney`).then(() => {
+        for (let i = 0; i < this.transactions.length; i++) {
+          const element = this.transactions[i];
+          if (
+            this.user.current_cash - 60000 < element.target &&
+            this.user.current_cash > element.target
+          ) {
+            this.$store.dispatch(`createSuggest`);
+            console.log(`DA`);
+            
+            break;
+          }
+        }
+        this.$store.dispatch(`getUsers`);
+      });
     }
   }
 };
