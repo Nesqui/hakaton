@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar d-flex justify-content-between flex-column">
+  <div class="sidebar d-flex justify-content-between flex-column scroll-navs">
     <div>
       <a
         v-if="currentObjective"
@@ -9,7 +9,6 @@
       <div class="row">
         <div v-if="suggests" class="col animated fadeIn ">
           <div class="suggest aqua-gradient py-2 px-4">
-            <h3>Вам скидка на последующие платежи</h3>
             <p>
               Скидка на следущие 3 платежа. Истечет через 3 дня.
               <b>Воспользоваться предложением</b>

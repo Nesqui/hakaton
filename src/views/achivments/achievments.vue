@@ -19,7 +19,7 @@
           </span>
         </p>
       </div>
-      <ul class="achievs">
+      <ul class="achievs scroll-wrapper scroll-navs">
         <!-- 1st -->
         <li
           v-for="(achivment, index) in achivments"
@@ -187,10 +187,6 @@ export default {
 
 <style scoped>
 .sidebar__content {
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-top: 13px;
-  padding-bottom: 13px;
 }
 
 .sidebar__header {
@@ -239,7 +235,6 @@ export default {
   list-style: none;
   margin-bottom: 5px;
   overflow-y: scroll;
-  max-height: 24vh;
 }
 
 .achieve__content {

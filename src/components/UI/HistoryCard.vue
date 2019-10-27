@@ -31,7 +31,7 @@
       </div>
       <mdb-card>
         <mdb-card-body>
-          <mdb-card-text class="row-wrapper">
+          <mdb-card-text class="row-wrapper scroll-wrapper scroll-navs">
             <mdb-row>
               <mdb-col class="mb-3">История начисления бонусов</mdb-col>
             </mdb-row>
@@ -184,9 +184,8 @@ h4 {
   }
 }
 .row-wrapper {
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;  
-  max-height: 15vh;
 }
 .bonus-title {
   p {
