@@ -45,7 +45,7 @@
       </div>
       <div class="footer">
         <div class="footer-logos">
-          <a class="logo-pixels" href="https://pixels.ru">
+          <a class="logo-pixels" href="https://pixels">
             <img src="../assets/pixels.svg" alt="pixels" />
           </a>
           <a class="logo-uralsib" href="https://uralsib.ru">
